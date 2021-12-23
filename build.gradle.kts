@@ -6,6 +6,7 @@ plugins {
   idea
   id("org.springframework.boot") version "2.6.1" apply false
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
+//  id("maven-publish")
   kotlin("jvm") version "1.6.0"
   kotlin("plugin.spring") version "1.6.0"
 }
@@ -21,10 +22,11 @@ subprojects {
     plugin("io.spring.dependency-management")
     plugin("org.jetbrains.kotlin.jvm")
     plugin("org.jetbrains.kotlin.plugin.spring")
+//    plugin("maven-publish")
   }
 
   group = "io.github.novemdecillion.utils"
-  version = "1.0.0-SNAPSHOT"
+  version = "1.0.0"
   java.sourceCompatibility = JavaVersion.VERSION_11
 
   dependencyManagement {
@@ -49,6 +51,24 @@ subprojects {
   tasks.withType<Test> {
     useJUnitPlatform()
   }
+
+//  configure<PublishingExtension> {
+//    repositories {
+//      maven {
+//        name = "GitHubPackages"
+//        url = uri("https://maven.pkg.github.com/novemdecillion/novemdecillion-utils")
+//        credentials {
+//          username = project.findProperty("gpr.user") as String?
+//          password = project.findProperty("gpr.key") as String?
+//        }
+//      }
+//    }
+//    publications {
+//      register<MavenPublication>("gpr") {
+//        from(components["java"])
+//      }
+//    }
+//  }
 }
 
 idea {
