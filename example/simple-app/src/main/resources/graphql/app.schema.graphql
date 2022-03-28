@@ -1,0 +1,16 @@
+type Authority {
+  authority: String!
+}
+
+type User {
+  username: String!
+  authorities: [Authority!]!
+}
+
+type Query {
+  users: [User!]!
+}
+
+type Mutation {
+  login(username: ID!, password: String!): User
+}

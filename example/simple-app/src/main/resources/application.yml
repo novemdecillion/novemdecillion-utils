@@ -1,0 +1,17 @@
+graphql:
+  servlet:
+    mapping: /api
+    context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+    exception-handlers-enabled: true
+    websocket:
+      enabled: false
+  tools:
+    schema-location-pattern: graphql/*.schema.graphql
+
+
+novemdecillion:
+  app:
+    token:
+      secret: gmB3hapUXE!&z}39}FQ/&F-]LNG[g2KF
+      salt: XqCpgMpC)dt$mhU{pB9>}AADAn{Z)%k7
+      duration: 30
