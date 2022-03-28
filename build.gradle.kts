@@ -22,7 +22,7 @@ subprojects {
     plugin("io.spring.dependency-management")
     plugin("org.jetbrains.kotlin.jvm")
     plugin("org.jetbrains.kotlin.plugin.spring")
-//    plugin("maven-publish")
+    plugin("maven-publish")
   }
 
   group = "io.github.novemdecillion.utils"
@@ -41,6 +41,10 @@ subprojects {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   }
 
+  java {
+    withSourcesJar()
+  }
+
   tasks.withType<KotlinCompile> {
     kotlinOptions {
       freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -52,23 +56,19 @@ subprojects {
     useJUnitPlatform()
   }
 
-//  configure<PublishingExtension> {
-//    repositories {
-//      maven {
-//        name = "GitHubPackages"
-//        url = uri("https://maven.pkg.github.com/novemdecillion/novemdecillion-utils")
-//        credentials {
-//          username = project.findProperty("gpr.user") as String?
-//          password = project.findProperty("gpr.key") as String?
-//        }
-//      }
-//    }
-//    publications {
-//      register<MavenPublication>("gpr") {
-//        from(components["java"])
-//      }
-//    }
-//  }
+  configure<PublishingExtension> {
+    repositories {
+      maven {
+        url = uri(project.findProperty("repositoryUrl") as String)
+
+      }
+    }
+    publications {
+      register<MavenPublication>("maven") {
+        from(components["java"])
+      }
+    }
+  }
 }
 
 idea {
